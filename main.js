@@ -1,4 +1,3 @@
-var mouseEvent = "empty";
 var lastPositionOfX, lastPositionOfY;
 
     canvas = document.getElementById('myCanvas');
@@ -8,7 +7,7 @@ var lastPositionOfX, lastPositionOfY;
     widthOfLine = 2;
     var width= screen.width
     var newwidth= screen.width-70;
-    var newheight= screen. height-300;
+    var newheight= screen.height-300;
 
     if(width<992){
         canvas.width= newwidth;
@@ -16,23 +15,25 @@ var lastPositionOfX, lastPositionOfY;
         document.body.style.overflow="hidden";
 
     }
-    canvas.addEventListener("touchstart", touchstart);
+    canvas.addEventListener("touchstart", mytouchstart);
     
-    function touchstart(e)
+    function mytouchstart(e)
     {
+        console.log("touch");
        lastPositionOfX=e.touches[0].clientX-canvas.offsetLeft;
        lastPositionOfY=e.touches[0].clientY-canvas.offsetTop;
     }
 
-    canvas.addEventListener("touchmove", touchmove);
-    function touchmove(e)
+    canvas.addEventListener("touchmove", mytouchmove);
+    function mytouchmove(e)
     {   
-        lastPositionOfX=e.touches[0].clientX-canvas.offsetLeft;
-        lastPositionOfY=e.touches[0].clientY-canvas.offsetTop;
+        currentPositionOfTouchX=e.touches[0].clientX-canvas.offsetLeft;
+        currentPositionOfTouchY=e.touches[0].clientY-canvas.offsetTop;
 
         ctx.beginPath();
-        ctx.strokeStyle = color;
-        ctx.lineWidth = widthOfLine;
+
+        ctx.strokeStyle= color;
+        ctx.lineWidth=widthOfLine;
 
         console.log("Ultima posição das coordenadas x e y = ");
         console.log("x = " + lastPositionOfX + "y = " + lastPositionOfY);
